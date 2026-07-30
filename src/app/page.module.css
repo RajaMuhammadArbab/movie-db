@@ -1,0 +1,25 @@
+.page {
+  min-height: calc(100vh - var(--nav-height));
+}
+
+.sections {
+  padding: 24px 0 48px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.genreSection {
+  margin: 32px 0;
+  padding: 0 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

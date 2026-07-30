@@ -1,0 +1,357 @@
+.page {
+  min-height: calc(100vh - var(--nav-height));
+  padding-bottom: 80px;
+}
+
+/* Backdrop Banner */
+.backdrop {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.backdropImg {
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.backdropOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 8, 17, 0.2) 0%,
+    rgba(5, 8, 17, 0.6) 60%,
+    rgba(5, 8, 17, 1) 100%
+  );
+}
+
+/* Main Content */
+.mainContent {
+  max-width: var(--max-width);
+  margin-top: -200px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Row: Poster + Core Info */
+.hero {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 48px;
+  align-items: flex-end;
+}
+
+.posterWrapper {
+  position: relative;
+  width: 240px;
+  aspect-ratio: 2/3;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+.poster {
+  object-fit: cover;
+}
+
+.noPoster {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.coreInfo {
+  flex: 1;
+  padding-bottom: 4px;
+}
+
+/* Genre Badges */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.genreBadge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  background: rgba(234, 179, 8, 0.1);
+  color: var(--accent-color);
+  transition: background var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.genreBadge:hover {
+  background: rgba(234, 179, 8, 0.2);
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.originalTitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.ratingBig {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.star { color: var(--accent-color); }
+
+.voteCount {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.metaDot { color: var(--border-color); }
+
+.overview {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(248, 250, 252, 0.85);
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+
+/* IDs */
+.ids {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.idPill {
+  padding: 4px 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.imdbPill {
+  border-color: #f5c518;
+  color: #f5c518;
+}
+
+/* Details Grid */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.detailCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 24px;
+}
+
+.detailTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+.detailRows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailRow {
+  display: flex;
+  gap: 12px;
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+.detailValue {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Section Headings */
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Cast Grid */
+.castSection {
+  margin-bottom: 48px;
+}
+
+.castGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 16px;
+}
+
+.castCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.castPhotoWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-color);
+  transition: border-color var(--transition-fast);
+}
+
+.castCard:hover .castPhotoWrapper {
+  border-color: var(--accent-color);
+}
+
+.castPhoto {
+  object-fit: cover;
+}
+
+.noCastPhoto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.castInfo {
+  text-align: center;
+}
+
+.castName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.castCharacter {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Production Companies */
+.companiesSection {
+  margin-bottom: 48px;
+}
+
+.companiesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.companyChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.companyLogo {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .backdrop { height: 300px; }
+  .mainContent { margin-top: -120px; }
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .posterWrapper { width: 140px; }
+  .detailsGrid { grid-template-columns: 1fr; }
+  .castGrid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .backdrop { height: 220px; }
+  .mainContent { margin-top: -60px; }
+  .title { font-size: 1.5rem; }
+}

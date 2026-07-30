@@ -1,0 +1,132 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* Tile */
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  min-height: 140px;
+  cursor: pointer;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tile:hover {
+  transform: translateY(-6px) scale(1.025);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Color tint overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tile:hover .overlay {
+  opacity: 0.8;
+}
+
+/* Shine sweep */
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0) 70%
+  );
+  background-size: 200% 100%;
+  background-position: 150% 0;
+  transition: background-position 0.6s ease;
+  pointer-events: none;
+}
+
+.tile:hover .shine {
+  background-position: -50% 0;
+}
+
+/* Icon bubble — top-right */
+.iconBubble {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.tile:hover .iconBubble {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Bottom row */
+.bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  /* Gradient fade at bottom for text readability */
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+
+.name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+}
+
+.arrow {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.tile:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tile { min-height: 110px; }
+  .name { font-size: 0.85rem; }
+}

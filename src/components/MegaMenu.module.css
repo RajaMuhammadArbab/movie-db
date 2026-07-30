@@ -1,0 +1,158 @@
+/* Menu Button */
+.menuBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.menuBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hamburger {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+/* Fullscreen Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #262626; /* Dark grey like IMDB */
+  z-index: 9999;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Content Container */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.logoBox {
+  background: var(--accent-color);
+  color: #000;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.closeBtn {
+  background: var(--accent-color);
+  color: #000;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.closeBtn:hover {
+  transform: scale(1.05);
+  background: #fff;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.colTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.icon {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: text-decoration 0.2s;
+}
+
+.list a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+  .container {
+    padding: 20px;
+  }
+  .header {
+    margin-bottom: 30px;
+  }
+}

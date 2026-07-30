@@ -1,0 +1,141 @@
+.section {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.sectionTitle {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.cardContainer {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.cardContainer::-webkit-scrollbar {
+  height: 8px;
+}
+.cardContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cardContainer::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 350px;
+  max-width: 450px;
+  flex: 1;
+}
+
+/* Collage Box */
+.collageLink {
+  text-decoration: none;
+  display: block;
+}
+
+.collageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #222;
+  transition: transform 0.2s;
+}
+
+.collageLink:hover .collageBox {
+  transform: scale(1.02);
+}
+
+.imagesRow {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.posterWrapper {
+  flex: 1;
+  position: relative;
+  height: 100%;
+}
+
+.posterWrapper:not(:last-child) {
+  border-right: 2px solid #000;
+}
+
+.posterImg {
+  object-fit: cover;
+}
+
+/* Overlay inside Collage */
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 30%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.badgeIcon {
+  font-size: 1.2rem;
+}
+
+/* Text Below Image */
+.textArea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardLink {
+  color: #5799ef; /* Bright blue link color from screenshot */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.cardLink:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    min-width: 280px;
+  }
+}
