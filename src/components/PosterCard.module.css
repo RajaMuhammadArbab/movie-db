@@ -11,8 +11,10 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   background-color: var(--bg-tertiary);
+  border-color: rgba(234, 179, 8, 0.4);
+  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.15);
 }
 
 .imageLink {

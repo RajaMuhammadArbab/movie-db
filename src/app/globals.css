@@ -29,6 +29,8 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: var(--bg-color);
+  /* Depth: Subtle radial gradient */
+  background-image: radial-gradient(circle at 50% 0%, #1a2235 0%, var(--bg-color) 60%);
   color: var(--text-primary);
 }
 
@@ -38,6 +40,13 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-oswald), sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 * {
@@ -84,16 +93,23 @@ ul {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--bg-tertiary);
-  border-radius: 5px;
+  border-radius: 6px;
+  border: 3px solid var(--bg-color); /* adds padding inside track */
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border-color);
+  background: var(--accent-color);
+}
+
+/* Text Selection */
+::selection {
+  background-color: var(--accent-color);
+  color: #000;
 }

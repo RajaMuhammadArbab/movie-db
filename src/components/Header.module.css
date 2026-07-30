@@ -1,6 +1,8 @@
 .header {
   height: var(--nav-height);
-  background-color: #0D1321;
+  background-color: rgba(13, 19, 33, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   position: sticky;
   top: 0;

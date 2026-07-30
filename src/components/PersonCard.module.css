@@ -27,7 +27,8 @@
 
 .card:hover .avatarWrapper {
   border-color: var(--accent-color);
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
 }
 
 .avatar {
