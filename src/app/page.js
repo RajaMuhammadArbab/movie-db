@@ -145,7 +145,14 @@ export default async function HomePage() {
            </div>
         </div>
 
-        {/* 3. Media Grid for "Now In Theaters" (16:9 Backdrops) */}
+        {/* 3. Trending People */}
+        <ScrollRow title="Trending People" linkLabel="See all" linkHref="#">
+          {peopleList.map((person, i) => (
+            <PersonCard key={person.id} person={person} rank={i + 1} />
+          ))}
+        </ScrollRow>
+
+        {/* 4. Media Grid for "Now In Theaters" (16:9 Backdrops) */}
         <section className={styles.mediaGridSection}>
           <div className={styles.sectionHeader}>
             <span className={styles.yellowBar}></span>
@@ -166,20 +173,14 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 4. A few horizontal rows for discovery to balance the layout */}
+        {/* 5. Trending This Week */}
         <ScrollRow title="Trending This Week" linkLabel="See all" linkHref="/search?q=trending">
           {trendingList.map(movie => (
             <PosterCard key={movie.id} movie={movie} />
           ))}
         </ScrollRow>
 
-        <ScrollRow title="Trending People" linkLabel="See all" linkHref="#">
-          {peopleList.map((person, i) => (
-            <PersonCard key={person.id} person={person} rank={i + 1} />
-          ))}
-        </ScrollRow>
-
-        {/* 5. Genres and News */}
+        {/* 6. Genres */}
         <section className={styles.genreSection}>
           <div className={styles.sectionHeader}>
             <span className={styles.yellowBar}></span>
