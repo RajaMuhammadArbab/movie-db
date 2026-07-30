@@ -6,6 +6,7 @@ import PosterCard from '@/components/PosterCard';
 import PersonCard from '@/components/PersonCard';
 import ScrollRow from '@/components/ScrollRow';
 import HistoryTracker from '@/components/HistoryTracker';
+import TrailerPlayer from '@/components/TrailerPlayer';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }) {
@@ -69,17 +70,15 @@ export default async function MovieDetailPage({ params }) {
         {/* HERO SECTION: Video Player + Dark Info Panel */}
         <div className={styles.heroLayout}>
           
-          {/* Left: Huge Video Player */}
+          {/* Left: Video Player (shows thumbnail, opens modal on click) */}
           <div className={styles.videoArea}>
             {trailerId ? (
-              <iframe
-                className={styles.trailerFrame}
-                src={`https://www.youtube.com/embed/${trailerId}?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&disablekb=0&fs=1&color=white&playsinline=1`}
-                title={`${movie.title} Trailer`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
+              <TrailerPlayer
+                trailerId={trailerId}
+                backdropUrl={backdropUrl}
+                posterUrl={posterUrl}
+                title={movie.title}
+              />
             ) : (
               <div className={styles.noTrailer}>
                 <MovieImage
