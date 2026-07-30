@@ -1,10 +1,8 @@
 .section {
   width: 100%;
   max-width: var(--max-width);
-  margin: -60px auto 0;
-  padding: 0 24px 40px;
-  position: relative;
-  z-index: 10;
+  margin: 0 auto;
+  padding: 40px 0;
 }
 
 .sectionTitle {

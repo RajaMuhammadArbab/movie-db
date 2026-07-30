@@ -23,6 +23,11 @@ function formatRuntime(minutes) {
   return h > 0 ? `${h}h ${m}m` : `${m}m`;
 }
 
+function formatCurrency(value) {
+  if (!value) return 'N/A';
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+}
+
 export default async function MovieDetailPage({ params }) {
   const { id } = await params;
   const movie = await getMovieDetails(id);
@@ -34,14 +39,16 @@ export default async function MovieDetailPage({ params }) {
   const backdropUrl = getImageUrl(movie.backdrop_path, 'w1280');
   const posterUrl = getImageUrl(movie.poster_path, 'w500');
 
-  const cast = movie.credits?.cast?.slice(0, 16) || [];
+  const cast = movie.credits?.cast?.slice(0, 15) || [];
   const crew = movie.credits?.crew || [];
   const directors = crew.filter(p => p.job === 'Director');
-  const writers = crew.filter(p => p.job === 'Writer' || p.job === 'Screenplay' || p.department === 'Writing').slice(0, 4);
-  const producers = crew.filter(p => p.job === 'Producer' || p.job === 'Executive Producer').slice(0, 4);
+  const writers = crew.filter(p => p.job === 'Writer' || p.job === 'Screenplay' || p.department === 'Writing').slice(0, 3);
+  const producers = crew.filter(p => p.job === 'Producer' || p.job === 'Executive Producer').slice(0, 3);
+  const topStars = cast.slice(0, 3);
 
   const year = movie.release_date?.substring(0, 4) || '';
   const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'NR';
+  const isReleased = movie.status === 'Released';
 
   // Find YouTube Trailer
   const videos = movie.videos?.results || [];
@@ -52,100 +59,131 @@ export default async function MovieDetailPage({ params }) {
     <div className={styles.page}>
       <HistoryTracker movie={{ id: movie.id, title: movie.title, poster_path: movie.poster_path }} />
 
-      {/* Backdrop Banner */}
-      <div className={styles.backdrop}>
-        <MovieImage
-          src={backdropUrl}
-          alt={movie.title}
-          fill
-          priority
-          sizes="100vw"
-          className={styles.backdropImg}
-          movieId={movie.id}
-          aspectRatio="16/9"
-        />
-        <div className={styles.backdropOverlay} />
-      </div>
+      {/* Main Container */}
+      <div className={styles.container}>
 
-      {/* Main Content */}
-      <div className={`container ${styles.mainContent}`}>
-
-        {/* Poster + Core Info */}
-        <div className={styles.hero}>
-          <div className={styles.posterWrapper}>
-            <MovieImage
-              src={posterUrl}
-              alt={`${movie.title} poster`}
-              fill
-              sizes="300px"
-              className={styles.poster}
-              movieId={movie.id}
-            />
-          </div>
-
-          <div className={styles.coreInfo}>
-            <div className={styles.badges}>
-              {movie.genres?.map(g => (
-                <Link key={g.id} href={`/search?genre=${g.id}&genre_name=${encodeURIComponent(g.name)}`} className={styles.genreBadge}>
-                  {g.name}
-                </Link>
-              ))}
-            </div>
-
+        {/* 1. Title Header Block */}
+        <div className={styles.headerBlock}>
+          <div className={styles.titleArea}>
             <h1 className={styles.title}>{movie.title}</h1>
-
+            <div className={styles.metaRow}>
+              <span>{year}</span>
+              <span className={styles.dot}>·</span>
+              <span>{movie.adult ? 'NC-17' : 'PG-13'}</span> {/* Placeholder for age rating */}
+              <span className={styles.dot}>·</span>
+              <span>{formatRuntime(movie.runtime)}</span>
+            </div>
             {movie.original_title && movie.original_title !== movie.title && (
               <p className={styles.originalTitle}>Original title: {movie.original_title}</p>
             )}
-
-            <div className={styles.metaRow}>
-              <span className={styles.ratingBig}>
-                <span className={styles.star}>★</span>
-                {rating}
-                <span className={styles.voteCount}>/ 10 ({movie.vote_count?.toLocaleString()} votes)</span>
-              </span>
-              <span className={styles.metaDot}>·</span>
-              <span>{year}</span>
-              <span className={styles.metaDot}>·</span>
-              <span>{formatRuntime(movie.runtime)}</span>
+          </div>
+          
+          <div className={styles.ratingArea}>
+            <div className={styles.ratingBox}>
+              <div className={styles.ratingLabel}>MovieDB RATING</div>
+              <div className={styles.ratingValue}>
+                <span className={styles.starIcon}>★</span>
+                <div className={styles.ratingNumbers}>
+                  <span className={styles.score}>{rating}</span><span className={styles.outOf}>/10</span>
+                  <div className={styles.voteCount}>{movie.vote_count?.toLocaleString()}</div>
+                </div>
+              </div>
             </div>
-
-            <p className={styles.overview}>{movie.overview}</p>
-
-            <TrailerButton trailerId={trailerId} />
+            <div className={styles.ratingBox}>
+              <div className={styles.ratingLabel}>YOUR RATING</div>
+              <div className={styles.ratingValueRate}>
+                <span className={styles.starIconEmpty}>☆</span>
+                <span className={styles.rateText}>Rate</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Details Grid */}
-        <div className={styles.detailsGrid}>
-          <section className={styles.detailCard}>
-            <h2 className={styles.detailTitle}>Production Info</h2>
-            <div className={styles.detailRows}>
-              <DetailRow label="Release Date" value={movie.release_date || 'N/A'} />
-              <DetailRow label="Runtime" value={formatRuntime(movie.runtime)} />
-              <DetailRow label="Original Language" value={movie.original_language?.toUpperCase() || 'N/A'} />
-              <DetailRow label="Spoken Languages" value={movie.spoken_languages?.map(l => l.english_name).join(', ') || 'N/A'} />
-              <DetailRow label="Countries" value={movie.production_countries?.map(c => c.name).join(', ') || 'N/A'} />
-              <DetailRow label="Status" value={movie.status || 'N/A'} />
-              {movie.budget > 0 && <DetailRow label="Budget" value={`$${movie.budget?.toLocaleString()}`} />}
-              {movie.revenue > 0 && <DetailRow label="Revenue" value={`$${movie.revenue?.toLocaleString()}`} />}
-            </div>
-          </section>
-
-          <section className={styles.detailCard}>
-            <h2 className={styles.detailTitle}>Crew</h2>
-            <div className={styles.detailRows}>
-              {directors.length > 0 && <DetailRow label="Director(s)" value={directors.map(p => p.name).join(', ')} />}
-              {writers.length > 0 && <DetailRow label="Writer(s)" value={writers.map(p => p.name).join(', ')} />}
-              {producers.length > 0 && <DetailRow label="Producer(s)" value={producers.map(p => p.name).join(', ')} />}
-            </div>
-          </section>
+        {/* 2. Media Block */}
+        <div className={styles.mediaBlock}>
+          <div className={styles.posterWrapper}>
+            <MovieImage
+              src={posterUrl}
+              alt={`${movie.title} Poster`}
+              fill
+              sizes="300px"
+              className={styles.posterImg}
+              movieId={movie.id}
+            />
+          </div>
+          <div className={styles.trailerWrapper}>
+            {trailerId ? (
+              <iframe
+                className={styles.trailerFrame}
+                src={`https://www.youtube.com/embed/${trailerId}?autoplay=0&mute=0&controls=1`}
+                title={`${movie.title} Trailer`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className={styles.noTrailer}>
+                <MovieImage
+                  src={backdropUrl}
+                  alt={movie.title}
+                  fill
+                  className={styles.noTrailerImg}
+                  movieId={movie.id}
+                />
+                <div className={styles.noTrailerOverlay}>
+                  <span>No Trailer Available</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Cast Section */}
+        {/* 3. Synopsis & Top Credits */}
+        <div className={styles.synopsisBlock}>
+          <div className={styles.genres}>
+            {movie.genres?.map(g => (
+              <Link key={g.id} href={`/search?genre=${g.id}&genre_name=${encodeURIComponent(g.name)}`} className={styles.genrePill}>
+                {g.name}
+              </Link>
+            ))}
+          </div>
+          
+          <p className={styles.overviewText}>{movie.overview}</p>
+          
+          <div className={styles.topCredits}>
+            {directors.length > 0 && (
+              <div className={styles.creditRow}>
+                <span className={styles.creditLabel}>Director{directors.length > 1 ? 's' : ''}</span>
+                <div className={styles.creditLinks}>
+                  {directors.map(p => <span key={p.id} className={styles.creditName}>{p.name}</span>)}
+                </div>
+              </div>
+            )}
+            {writers.length > 0 && (
+              <div className={styles.creditRow}>
+                <span className={styles.creditLabel}>Writer{writers.length > 1 ? 's' : ''}</span>
+                <div className={styles.creditLinks}>
+                  {writers.map(p => <span key={p.id} className={styles.creditName}>{p.name}</span>)}
+                </div>
+              </div>
+            )}
+            {topStars.length > 0 && (
+              <div className={styles.creditRow}>
+                <span className={styles.creditLabel}>Stars</span>
+                <div className={styles.creditLinks}>
+                  {topStars.map(p => <span key={p.id} className={styles.creditName}>{p.name}</span>)}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 4. Top Cast List */}
         {cast.length > 0 && (
-          <section className={styles.castSection}>
-            <h2 className={styles.sectionHeading}>Cast</h2>
+          <div className={styles.sectionBlock}>
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>Top cast</h2>
+            </div>
             <div className={styles.castGrid}>
               {cast.map(person => {
                 const photoUrl = getImageUrl(person.profile_path, 'w185');
@@ -170,34 +208,35 @@ export default async function MovieDetailPage({ params }) {
                 );
               })}
             </div>
-          </section>
+          </div>
         )}
 
-        {/* Production Companies */}
-        {movie.production_companies?.length > 0 && (
-          <section className={styles.companiesSection}>
-            <h2 className={styles.sectionHeading}>Production Companies</h2>
-            <div className={styles.companiesList}>
-              {movie.production_companies.map(company => (
-                <div key={company.id} className={styles.companyChip}>
-                  {company.logo_path && (
-                    <div style={{ position: 'relative', width: 48, height: 24 }}>
-                      <MovieImage
-                        src={getImageUrl(company.logo_path, 'w92')}
-                        alt={company.name}
-                        fill
-                        sizes="48px"
-                        className={styles.companyLogo}
-                        movieId={company.id}
-                        aspectRatio="2/1"
-                      />
-                    </div>
-                  )}
-                  <span>{company.name}</span>
-                </div>
-              ))}
+        {/* 5. Detailed Database Section */}
+        <div className={styles.sectionBlock}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Details</h2>
+          </div>
+          <div className={styles.detailsList}>
+            <DetailItem label="Release date" value={movie.release_date ? new Date(movie.release_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'} />
+            <DetailItem label="Countries of origin" value={movie.production_countries?.map(c => c.name).join(', ') || 'N/A'} />
+            <DetailItem label="Official languages" value={movie.spoken_languages?.map(l => l.english_name).join(', ') || 'N/A'} />
+            <DetailItem label="Also known as" value={movie.original_title || 'N/A'} />
+            <DetailItem label="Production companies" value={movie.production_companies?.map(c => c.name).join(', ') || 'N/A'} />
+            <DetailItem label="MovieDB ID" value={movie.id} />
+          </div>
+        </div>
+
+        {/* 6. Box Office */}
+        {(movie.budget > 0 || movie.revenue > 0) && (
+          <div className={styles.sectionBlock}>
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>Box office</h2>
             </div>
-          </section>
+            <div className={styles.detailsList}>
+              {movie.budget > 0 && <DetailItem label="Budget" value={formatCurrency(movie.budget)} />}
+              {movie.revenue > 0 && <DetailItem label="Gross worldwide" value={formatCurrency(movie.revenue)} />}
+            </div>
+          </div>
         )}
 
       </div>
@@ -205,11 +244,11 @@ export default async function MovieDetailPage({ params }) {
   );
 }
 
-function DetailRow({ label, value }) {
+function DetailItem({ label, value }) {
   return (
-    <div className={styles.detailRow}>
-      <span className={styles.detailLabel}>{label}</span>
-      <span className={styles.detailValue}>{value}</span>
+    <div className={styles.detailListItem}>
+      <span className={styles.detailListLabel}>{label}</span>
+      <span className={styles.detailListValue}>{value}</span>
     </div>
   );
 }
