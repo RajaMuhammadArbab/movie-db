@@ -6,6 +6,7 @@
   padding: 24px 0 48px;
   max-width: var(--max-width);
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .genreSection {
@@ -29,10 +30,10 @@
 /* 1. Spotlight Section */
 .spotlightSection {
   position: relative;
-  height: 500px;
+  height: 420px;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin: 0 24px 24px;
 }
 
 .spotlightBg {
@@ -109,8 +110,8 @@
 .databaseRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 24px;
+  gap: 24px;
+  margin: 0 24px 24px;
 }
 
 .listColumn {
@@ -231,30 +232,29 @@
   font-size: 1rem;
 }
 
-/* 3. Media Grid */
+/* 3. Media Grid — Smaller Cards */
 .mediaGridSection {
-  margin-bottom: 24px;
+  margin: 0 24px 32px;
 }
 
 .mediaGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
 }
 
 .mediaCard {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
-  group: hover;
 }
 
 .mediaBackdrop {
   position: relative;
   aspect-ratio: 16/9;
   background: #222;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -275,14 +275,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.85);
   transition: color 0.2s;
+  background: rgba(0,0,0,0.2);
 }
 
 .playIcon svg {
-  width: 48px;
-  height: 48px;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
 }
 
 .mediaCard:hover .playIcon {
@@ -290,27 +291,104 @@
 }
 
 .mediaTitle {
-  color: #fff;
-  font-size: 1.1rem;
+  color: #ccc;
+  font-size: 0.85rem;
   font-weight: 600;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Responsive Overrides */
-@media (max-width: 1024px) {
+/* ============================================
+   RESPONSIVE BREAKPOINTS — Full Site
+   ============================================ */
+
+/* Large tablets / small desktops */
+@media (max-width: 1100px) {
+  .spotlightTitle {
+    font-size: 2.2rem;
+  }
+  .mediaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
   .databaseRow {
     grid-template-columns: 1fr;
+    margin: 0 16px 24px;
   }
-}
-
-@media (max-width: 768px) {
-  .mediaGrid {
-    grid-template-columns: 1fr;
-  }
-  .spotlightTitle {
-    font-size: 2rem;
+  .spotlightSection {
+    height: 340px;
+    margin: 0 16px 24px;
   }
   .spotlightContent {
     padding: 0 24px;
+    max-width: 100%;
+  }
+  .spotlightTitle {
+    font-size: 1.8rem;
+  }
+  .spotlightDesc {
+    display: none;
+  }
+  .mediaGridSection {
+    margin: 0 16px 24px;
+  }
+  .mediaGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .spotlightSection {
+    height: 260px;
+    margin: 0 12px 20px;
+  }
+  .spotlightTitle {
+    font-size: 1.4rem;
+  }
+  .spotlightBtn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  .databaseRow {
+    grid-template-columns: 1fr;
+    margin: 0 12px 20px;
+  }
+  .mediaGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .mediaGridSection {
+    margin: 0 12px 20px;
+  }
+  .mediaTitle {
+    font-size: 0.75rem;
+  }
+  .verticalItem {
+    padding: 8px;
+  }
+  .rankNum {
+    font-size: 1.1rem;
+    width: 18px;
+  }
+  .verticalPoster {
+    width: 40px;
+    height: 60px;
+  }
+  .verticalTitle {
+    font-size: 0.9rem;
+  }
+  .detailListItem {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .detailListLabel {
+    min-width: auto;
   }
 }
