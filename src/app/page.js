@@ -48,7 +48,10 @@ export default async function HomePage() {
 
   // Use real data if available, otherwise fall back to mock demo data
   const trendingList  = withFallback(trendingMovies?.results, MOCK_MOVIES);
-  const peopleList    = withFallback(trendingPeople?.results, MOCK_PEOPLE);
+  const peopleList    = withFallback(
+    trendingPeople?.results?.filter(p => p.profile_path && p.known_for_department), 
+    MOCK_PEOPLE
+  );
   const nowPlayingList= withFallback(nowPlaying?.results, MOCK_MOVIES.slice(2));
   const upcomingList  = withFallback(upcoming?.results, MOCK_MOVIES.slice(4));
   const topRatedList  = withFallback(topRated?.results, [...MOCK_MOVIES].reverse());
