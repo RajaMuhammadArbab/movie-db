@@ -23,6 +23,12 @@
   line-height: 1;
 }
 
+.hamburger.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* Fullscreen Overlay */
 .overlay {
   position: fixed;
@@ -103,16 +109,18 @@
 .colTitle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-bottom: 16px;
   font-weight: 700;
 }
 
 .icon {
   color: var(--accent-color);
-  font-size: 1.1rem;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .list {

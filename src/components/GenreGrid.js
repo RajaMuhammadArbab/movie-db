@@ -42,10 +42,6 @@ export default function GenreGrid({ genres }) {
             {/* Shine sweep */}
             <div className={styles.shine} />
 
-            {/* Icon bubble top-right */}
-            <div className={styles.iconBubble}>
-              <span className={styles.icon}>{theme.icon}</span>
-            </div>
 
             {/* Label + arrow bottom-left */}
             <div className={styles.bottom}>

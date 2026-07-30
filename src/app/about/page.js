@@ -22,11 +22,11 @@ export default function AboutPage() {
           </p>
           <h2>What We Offer</h2>
           <ul>
-            <li>🔍 Search any movie by title instantly</li>
-            <li>🎬 Full cast and crew breakdowns</li>
-            <li>⭐ Ratings, vote counts, and runtime</li>
-            <li>🌍 Languages, countries, and production info</li>
-            <li>📸 High-quality poster and backdrop images</li>
+            <li>Search any movie by title instantly</li>
+            <li>Full cast and crew breakdowns</li>
+            <li>Ratings, vote counts, and runtime</li>
+            <li>Languages, countries, and production info</li>
+            <li>High-quality poster and backdrop images</li>
           </ul>
           <h2>Data Source</h2>
           <p>

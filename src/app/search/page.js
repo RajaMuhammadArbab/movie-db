@@ -128,7 +128,9 @@ export default async function SearchPage({ searchParams }) {
         ) : results !== null ? (
           /* No results state */
           <div className={styles.emptyState}>
-            <div className={styles.emptyIcon}>🎬</div>
+            <div className={styles.emptyIcon}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{width:'64px',height:'64px',opacity:0.3}}><path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375zm0 4.5h-.375v11.25c0 1.035.84 1.875 1.875 1.875h15c1.035 0 1.875-.84 1.875-1.875V7.5h-.375A3.375 3.375 0 0112 4.5a3.375 3.375 0 01-3.375 3H3.375zM12 6a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>
+            </div>
             <h2 className={styles.emptyTitle}>No movies found</h2>
             <p className={styles.emptyText}>
               We couldn&apos;t find any movies matching &quot;{query}&quot;. Try a different title or check the spelling.

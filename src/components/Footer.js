@@ -36,20 +36,23 @@ export default function Footer() {
         {/* Link Rows */}
         <div className={styles.linksArea}>
           <div className={styles.linkRow}>
-            <a href="#" className={styles.link}>Help <span className={styles.externalIcon}>🡕</span></a>
-            <a href="#" className={styles.link}>Site Index <span className={styles.externalIcon}>🡕</span></a>
-            <a href="#" className={styles.link}>MDBPro <span className={styles.externalIcon}>🡕</span></a>
-            <a href="#" className={styles.link}>Box Office Mojo <span className={styles.externalIcon}>🡕</span></a>
-            <a href="#" className={styles.link}>License MDB Data <span className={styles.externalIcon}>🡕</span></a>
+            <a href="#" className={styles.link}>Help <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
+            <a href="#" className={styles.link}>Site Index <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
+            <a href="#" className={styles.link}>MDBPro <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
+            <a href="#" className={styles.link}>Box Office Mojo <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
+            <a href="#" className={styles.link}>License MDB Data <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
           </div>
           <div className={styles.linkRow}>
             <a href="#" className={styles.link}>Press Room</a>
-            <a href="#" className={styles.link}>Advertising <span className={styles.externalIcon}>🡕</span></a>
-            <a href="#" className={styles.link}>Jobs <span className={styles.externalIcon}>🡕</span></a>
+            <a href="#" className={styles.link}>Advertising <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
+            <a href="#" className={styles.link}>Jobs <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={styles.extIcon}><path fillRule="evenodd" d="M4.22 11.78a.75.75 0 010-1.06L9.44 5.5H5.25a.75.75 0 010-1.5h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V6.06l-5.22 5.22a.75.75 0 01-1.06 0z" clipRule="evenodd"/></svg></a>
             <a href="#" className={styles.link}>Conditions of Use</a>
             <a href="#" className={styles.link}>Privacy Policy</a>
             <a href="#" className={styles.linkBadge}>
-              <span className={styles.badgeIcon}>✔❌</span>
+              <span className={styles.badgeIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{width:'10px',height:'10px'}}><path fillRule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clipRule="evenodd"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{width:'10px',height:'10px'}}><path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd"/></svg>
+              </span>
               Your Ads Privacy Choices
             </a>
           </div>
