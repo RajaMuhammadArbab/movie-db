@@ -74,10 +74,10 @@ export default async function MovieDetailPage({ params }) {
             {trailerId ? (
               <iframe
                 className={styles.trailerFrame}
-                src={`https://www.youtube.com/embed/${trailerId}?autoplay=0&mute=0&controls=1&rel=0`}
+                src={`https://www.youtube.com/embed/${trailerId}?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&disablekb=0&fs=1&color=white&playsinline=1`}
                 title={`${movie.title} Trailer`}
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
             ) : (
