@@ -132,23 +132,46 @@
   font-size: 0.85rem;
 }
 
+
 .verticalList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 .verticalItem {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #222;
+  padding: 10px 12px;
+  border-bottom: 1px solid #1e1e1e;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .verticalItem:last-child {
   border-bottom: none;
-  padding-bottom: 0;
+}
+
+.verticalItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(5px);
+}
+
+.verticalItem:hover .rankNum {
+  color: #f5c518;
+}
+
+.verticalItem:hover .verticalTitle {
+  color: #f5c518;
+}
+
+.verticalPoster img {
+  transition: transform 0.2s ease;
+}
+
+.verticalItem:hover .verticalPoster img {
+  transform: scale(1.08);
 }
 
 .rankNum {
