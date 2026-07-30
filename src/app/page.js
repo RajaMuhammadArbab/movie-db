@@ -12,6 +12,10 @@ import {
   MOCK_GENRES,
 } from '@/lib/mockData';
 import HeroCarousel from '@/components/HeroCarousel';
+import ScrollRow from '@/components/ScrollRow';
+import PosterCard from '@/components/PosterCard';
+import PersonCard from '@/components/PersonCard';
+import GenreGrid from '@/components/GenreGrid';
 import TopNews from '@/components/TopNews';
 import RecentlyViewed from '@/components/RecentlyViewed';
 import Link from 'next/link';
@@ -52,12 +56,8 @@ export default async function HomePage() {
   const genreList     = withFallback(genres?.genres, MOCK_GENRES);
 
   const heroMovies    = trendingList.slice(0, 8);
-  const top10         = trendingList.slice(0, 10);
   const fanFavorites  = topRatedList.slice(0, 12);
   const boxOffice     = [...nowPlayingList].sort((a, b) => b.popularity - a.popularity).slice(0, 6);
-
-  const genreMap = {};
-  genreList.forEach(g => { genreMap[g.id] = g.name; });
 
   const featuredMovie = trendingList[Math.floor(Math.random() * 5)]; // Pick a top movie for spotlight
   const featuredBackdrop = getImageUrl(featuredMovie?.backdrop_path, 'w1280');
