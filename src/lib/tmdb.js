@@ -77,9 +77,9 @@ export async function searchMovies(query, page = 1) {
   return await fetchFromTMDB('/search/movie', { query, page });
 }
 
-// Get Movie Details with Credits and Videos
+// Get Movie Details with Credits, Videos, and Recommendations
 export async function getMovieDetails(id) {
-  return await fetchFromTMDB(`/movie/${id}`, { append_to_response: 'credits,videos' });
+  return await fetchFromTMDB(`/movie/${id}`, { append_to_response: 'credits,videos,recommendations' });
 }
 
 // Get Movie Images (Posters, Backdrops)
